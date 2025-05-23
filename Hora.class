@@ -1,25 +1,65 @@
+import java.util.Scanner;
+
 public class Hora {
 	
 	private int hora;
 	private int min;
 	private int seg;
 	
+	private static Scanner sc = new Scanner(System.in);
+	
 	public Hora() {
 		
 	}
 	public Hora(int h, int m, int s) {
-		this.hora = h;
-		this.min = m;
-		this.seg = s;
+		setHor(h);
+		setMin(m);
+		setSeg(s);
+	}
+	public void setHor() {
+		try {
+			System.out.printf("Digite a hora:");
+			this.hora = sc.nextInt();
+		}catch(Exception ex){
+			System.out.printf("Erro: %s", ex);
+		}
+	}
+	public void setMin() {
+		try {
+			System.out.printf("Digite os minutos:");
+			this.min = sc.nextInt();
+		}catch(Exception ex){
+			System.out.printf("Erro: %s", ex);
+		}
+	}
+	public void setSeg() {
+		try {
+			System.out.printf("Digite os segundos:");
+			this.seg = sc.nextInt();
+		}catch(Exception ex){
+			System.out.printf("Erro: %s", ex);
+		}
 	}
 	public void setHor(int h) {
-		this.hora = h;
+		if(validaHor(h)) {
+			this.hora = h;
+		}else {
+			this.hora = 0;
+		}
 	}
 	public void setMin(int m) {
-		this.hora = m;
+		if(validaMin(m)) {
+			this.min = m;
+		}else {
+			this.min = 0;
+		}
 	}
 	public void setSeg(int s) {
-		this.hora = s;
+		if(validaSeg(s)) {
+			this.seg = s;
+		}else {
+			this.seg = 0;
+		}
 	}
 	public int getHor() {
 		return this.hora;
@@ -48,9 +88,36 @@ public class Hora {
 		return horaFormatada;
 	}
 	public int getSegundos() {
+
 		int segundos;
 		
 		segundos = hora*60*60 + min*60 + seg;
 		return segundos;
 	}
+	
+	private boolean validaHor(int h) {
+		if(h >= 0 && h < 24) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	private boolean validaMin(int m) {
+		if(m >= 0 && m < 60) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	private boolean validaSeg(int s) {
+		if(s >+ 0 && s < 60) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
+
