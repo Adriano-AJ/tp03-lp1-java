@@ -1,0 +1,56 @@
+public class Hora {
+	
+	private int hora;
+	private int min;
+	private int seg;
+	
+	public Hora() {
+		
+	}
+	public Hora(int h, int m, int s) {
+		this.hora = h;
+		this.min = m;
+		this.seg = s;
+	}
+	public void setHor(int h) {
+		this.hora = h;
+	}
+	public void setMin(int m) {
+		this.hora = m;
+	}
+	public void setSeg(int s) {
+		this.hora = s;
+	}
+	public int getHor() {
+		return this.hora;
+	}
+	public int getMin() {
+		return this.min;
+	}
+	public int getSeg() {
+		return this.seg;
+	}
+	public String getHora1() {
+		String horaFormatada = String.format("%02d:%02d:%02d", hora, min, seg);
+		return horaFormatada;
+	}
+	public String getHora2() {
+		
+		String periodo;
+		
+		if(hora < 12) {
+			periodo = "AM";
+		}else {
+			periodo = "PM";
+		}
+		
+		String horaFormatada = String.format("%02d:%02d:%02d - %s", hora, min, seg, periodo);
+		return horaFormatada;
+	}
+	public int getSegundos() {
+		int segundos;
+		
+		segundos = hora*60*60 + min*60 + seg;
+		return segundos;
+	}
+}
