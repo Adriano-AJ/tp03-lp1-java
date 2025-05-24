@@ -1,3 +1,5 @@
+package matematica;
+
 import java.util.Scanner;
 
 public class Hora {
@@ -5,11 +7,13 @@ public class Hora {
 	private int hora;
 	private int min;
 	private int seg;
-	
+
 	private static Scanner sc = new Scanner(System.in);
 	
 	public Hora() {
-		
+		setHor();
+		setMin();
+		setSeg();
 	}
 	public Hora(int h, int m, int s) {
 		setHor(h);
@@ -17,28 +21,62 @@ public class Hora {
 		setSeg(s);
 	}
 	public void setHor() {
-		try {
-			System.out.printf("Digite a hora:");
-			this.hora = sc.nextInt();
-		}catch(Exception ex){
-			System.out.printf("Erro: %s", ex);
-		}
+		int hora;
+	    boolean entradaValida = false;
+
+	    do {
+	        System.out.print("Digite a hora: ");
+	        try {
+	            hora = sc.nextInt();
+	            if (validaHor(hora)) { 
+	                this.hora = hora;
+	                entradaValida = true;
+	            } else {
+	                System.out.println("Hora inválida, tente novamente.");
+	            }
+	        } catch (Exception ex) {
+	            System.out.println("Entrada inválida. Digite um número inteiro.");
+	            sc.nextLine();
+	        }
+	    } while (!entradaValida);
 	}
 	public void setMin() {
-		try {
-			System.out.printf("Digite os minutos:");
-			this.min = sc.nextInt();
-		}catch(Exception ex){
-			System.out.printf("Erro: %s", ex);
-		}
+		int min;
+	    boolean entradaValida = false;
+	    
+	    do {
+	    	System.out.printf("Digite os minutos:");
+			try {
+				min = sc.nextInt();
+				if(validaMin(min)){
+					this.min = min;
+					entradaValida = true;
+				}else {
+					System.out.printf("Minuto invalido.");
+				}
+			}catch(Exception ex){
+				System.out.printf("Erro: %s", ex);
+			}
+	   }while(!entradaValida);
 	}
 	public void setSeg() {
-		try {
+		int seg;
+		boolean entradaValida = false;
+		
+		do {
 			System.out.printf("Digite os segundos:");
-			this.seg = sc.nextInt();
-		}catch(Exception ex){
-			System.out.printf("Erro: %s", ex);
-		}
+			try {
+				seg = sc.nextInt();
+				if(validaSeg(seg)) {
+					this.seg = seg;
+					entradaValida = true;
+				}else {
+					System.out.printf("Segundos invalidos.");
+				}
+			}catch(Exception ex){
+				System.out.printf("Erro: %s", ex);
+			}
+		}while(!entradaValida);
 	}
 	public void setHor(int h) {
 		if(validaHor(h)) {
@@ -118,6 +156,10 @@ public class Hora {
 		else {
 			return false;
 		}
+	}
+
+	public static void main(String args) {
+		Hora hora = new Hora();
 	}
 }
 
