@@ -1,4 +1,4 @@
-package matematica;
+package estudos;
 
 import java.util.Scanner;
 
@@ -158,8 +158,5 @@ public class Hora {
 		}
 	}
 
-	public static void main(String args) {
-		Hora hora = new Hora();
-	}
 }
 
